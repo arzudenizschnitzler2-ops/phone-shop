@@ -1,11 +1,22 @@
 import { useShop } from "../context/ShopContext";
 
 function Warenkorb() {
-  const { warenkorb, gesamtpreis, warenkorbLeeren } = useShop();
+  const { warenkorb } = useShop();
+
+  const gesamtpreis = warenkorb.reduce(
+    (summe, produkt) => summe + produkt.preis,
+    0
+  );
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2 style={{ fontSize: "52px", marginTop: 0, marginBottom: "24px" }}>
+      <h2
+        style={{
+          fontSize: "52px",
+          marginTop: 0,
+          marginBottom: "24px",
+        }}
+      >
         Mein Warenkorb
       </h2>
 
@@ -17,7 +28,6 @@ function Warenkorb() {
             borderRadius: "20px",
             boxShadow: "0 12px 24px rgba(15,23,42,0.08)",
             maxWidth: "430px",
-            border: "1px solid #e5eefc"
           }}
         >
           <p style={{ margin: 0, fontSize: "18px", color: "#475569" }}>
@@ -36,10 +46,10 @@ function Warenkorb() {
                 marginBottom: "12px",
                 boxShadow: "0 10px 22px rgba(15,23,42,0.08)",
                 maxWidth: "430px",
-                border: "1px solid #e5eefc"
               }}
             >
               <h3 style={{ margin: "0 0 8px 0" }}>{produkt.name}</h3>
+
               <p style={{ margin: 0, color: "#475569" }}>
                 Preis: {produkt.preis.toFixed(2)} €
               </p>
@@ -54,26 +64,35 @@ function Warenkorb() {
               maxWidth: "430px",
               marginTop: "18px",
               boxShadow: "0 10px 22px rgba(15,23,42,0.08)",
-              border: "1px solid #dbeafe"
             }}
           >
-            <h3 style={{ marginTop: 0, marginBottom: "14px", color: "#1e3a8a" }}>
+            <h3
+              style={{
+                marginTop: 0,
+                marginBottom: "20px",
+                color: "#1e3a8a",
+              }}
+            >
               Gesamtpreis: {gesamtpreis.toFixed(2)} €
             </h3>
 
             <button
-              onClick={warenkorbLeeren}
+              onClick={() => window.location.reload()}
               style={{
-                padding: "11px 16px",
-                border: "none",
-                borderRadius: "12px",
-                background: "linear-gradient(90deg, #ef4444 0%, #f97316 100%)",
+                padding: "14px 24px",
+                background:
+                  "linear-gradient(90deg, #ef4444 0%, #f97316 100%)",
                 color: "white",
+                border: "none",
+                borderRadius: "14px",
+                fontSize: "16px",
+                fontWeight: "700",
                 cursor: "pointer",
-                fontWeight: "bold"
+                boxShadow: "0 8px 18px rgba(239,68,68,0.3)",
+                transition: "0.3s",
               }}
             >
-              Warenkorb leeren
+              🗑️ Warenkorb leeren
             </button>
           </div>
         </div>

@@ -1,67 +1,79 @@
-import { createContext, useContext, useMemo } from 'react';
-import useLocalStorage from '../hooks/useLocalStorage';
+import { createContext, useContext, useState } from "react";
 
 const ShopContext = createContext();
 
 const startProdukte = [
   {
     id: 1,
-    name: 'iPhone Case',
+    name: "iPhone Case",
     preis: 19.99,
-    beschreibung: 'Schutz für dein Smartphone.',
-    farbe: '#dbeafe',
+    beschreibung: "Schutz für dein Smartphone.",
+    farbe: "#dbeafe",
   },
   {
     id: 2,
-    name: 'USB-C Kabel',
+    name: "USB-C Kabel",
     preis: 14.99,
-    beschreibung: 'Schnelles Laden.',
-    farbe: '#dcfce7',
+    beschreibung: "Schnelles Laden.",
+    farbe: "#dcfce7",
   },
   {
     id: 3,
-    name: 'Panzerglas',
+    name: "Panzerglas",
     preis: 9.99,
-    beschreibung: 'Extra Schutz fürs Display.',
-    farbe: '#fef3c7',
+    beschreibung: "Extra Schutz fürs Display.",
+    farbe: "#fef3c7",
+  },
+  {
+    id: 4,
+    name: "Smart Ring Charger",
+    preis: 39.99,
+    beschreibung: "Kabelloses Ladegerät für Smart Rings.",
+    farbe: "#d8e8ff",
+  },
+  {
+    id: 5,
+    name: "Magnetic Phone Grip",
+    preis: 19.99,
+    beschreibung: "Magnetischer Handyhalter für besseren Halt.",
+    farbe: "#dff7df",
+  },
+  {
+    id: 6,
+    name: "Privacy Camera Cover Set",
+    preis: 12.99,
+    beschreibung: "Schützt die Smartphone-Kamera vor Kratzern.",
+    farbe: "#fff0c9",
   },
 ];
 
 export function ShopProvider({ children }) {
-  const [produkte, setProdukte] = useLocalStorage('produkte', startProdukte);
-  const [warenkorb, setWarenkorb] = useLocalStorage('warenkorb', []);
+  const [produkte, setProdukte] = useState(startProdukte);
+  const [warenkorb, setWarenkorb] = useState([]);
 
-  const produktSpeichern = (produkt) => {
-    const neuesProdukt = {
-      id: Date.now(),
-      ...produkt,
-      farbe: '#e0f2fe',
-    };
-    setProdukte([...produkte, neuesProdukt]);
-  };
+  function addToCart(produkt) {
+  setWarenkorb((prev) => [...prev, produkt]);
+}
 
-  const produktInWarenkorb = (produkt) => {
-    setWarenkorb([...warenkorb, produkt]);
-  };
+function produktInWarenkorb(produkt) {
+  addToCart(produkt);
+}
 
-  const warenkorbLeeren = () => {
-    setWarenkorb([]);
-  };
-
-  const gesamtpreis = useMemo(() => {
-    return warenkorb.reduce((sum, p) => sum + p.preis, 0);
-  }, [warenkorb]);
+function removeFromCart(id) {
+  setWarenkorb((prev) => prev.filter((item) => item.id !== id));
+}
 
   return (
     <ShopContext.Provider
-      value={{
-        produkte,
-        warenkorb,
-        gesamtpreis,
-        produktSpeichern,
-        produktInWarenkorb,
-        warenkorbLeeren,
-      }}
+     value={{
+  produkte,
+  setProdukte,
+  warenkorb,
+  setWarenkorb,
+  addToCart,
+  produktInWarenkorb,
+  removeFromCart,
+}}
     >
       {children}
     </ShopContext.Provider>

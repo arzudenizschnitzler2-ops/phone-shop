@@ -53,6 +53,9 @@ function Navbar() {
         <NavLink to="/warenkorb" style={linkStyle}>
           Warenkorb ({warenkorb.length})
         </NavLink>
+      <NavLink to="/login" style={linkStyle}>
+  Login
+</NavLink>
       </nav>
     </header>
   );

@@ -1,10 +1,11 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ShopProvider } from './context/ShopContext';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Produkte from './pages/Produkte';
-import Warenkorb from './pages/Warenkorb';
-import Detail from './pages/Detail';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ShopProvider } from "./context/ShopContext";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Produkte from "./pages/Produkte";
+import Warenkorb from "./pages/Warenkorb";
+import Detail from "./pages/Detail";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -12,9 +13,9 @@ function App() {
       <BrowserRouter>
         <div
           style={{
-            minHeight: '100vh',
-            background: '#f8fafc',
-            fontFamily: 'Arial',
+            minHeight: "100vh",
+            background: "#f8fafc",
+            fontFamily: "Arial",
           }}
         >
           <Navbar />
@@ -24,6 +25,7 @@ function App() {
             <Route path="/produkte" element={<Produkte />} />
             <Route path="/warenkorb" element={<Warenkorb />} />
             <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
       </BrowserRouter>

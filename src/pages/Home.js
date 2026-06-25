@@ -3,29 +3,24 @@ import InfoKarte from "../components/InfoKarte";
 
 function Home() {
   useEffect(() => {
-  console.log("Startseite geladen");
-}, []);
+    console.log("Startseite geladen");
+  }, []);
+
   return (
-    <div style={{ padding: "20px" }}>
-      <div
-        style={{
-          background: "linear-gradient(135deg, #ffffff 0%, #f8fbff 100%)",
-          padding: "30px",
-          borderRadius: "24px",
-          boxShadow: "0 12px 24px rgba(15,23,42,0.08)",
-          marginBottom: "30px",
-          border: "1px solid #e5eefc"
-        }}
-      >
-        <h2 style={{ marginTop: 0, fontSize: "52px", marginBottom: "12px", color: "#0f172a" }}>
+    <div className="px-5 py-5">
+      <div className="mb-8 rounded-3xl border border-slate-200 bg-gradient-to-br from-white to-indigo-50 p-8 shadow-lg">
+        <h2 className="mb-3 text-5xl font-bold text-slate-900">
           Willkommen bei Phone Shop
         </h2>
-        <p style={{ margin: 0, fontSize: "26px", color: "#475569" }}>
+
+        
+
+        <p className="text-xl text-slate-600">
           Hier findest du modernes Handy-Zubehör.
         </p>
       </div>
 
-      <div style={{ display: "flex", gap: "20px", marginTop: "30px", flexWrap: "wrap" }}>
+      <div className="mt-8 flex flex-wrap gap-5">
         <InfoKarte
           titel="Moderne Produkte"
           text="Cases, Kabel und Panzerglas für dein Smartphone."
