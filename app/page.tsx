@@ -11,11 +11,41 @@ type Product = {
 };
 
 const products: Product[] = [
-  { id: 1, name: "iPhone Case", price: 19.99, description: "Stylische Schutzhülle für dein Smartphone.", icon: "📱" },
-  { id: 2, name: "Panzerglas", price: 9.99, description: "Extra Schutz für dein Display.", icon: "🛡️" },
-  { id: 3, name: "USB-C Ladekabel", price: 14.99, description: "Schnelles Laden für dein Handy.", icon: "🔌" },
-  { id: 4, name: "Smart Ring Charger", price: 39.99, description: "Kabelloses Ladegerät für Smart Rings.", icon: "💍" },
-  { id: 5, name: "Magnetic Phone Grip", price: 19.99, description: "Magnetischer Handyhalter für besseren Halt.", icon: "🧲" },
+  {
+    id: 1,
+    name: "iPhone Case",
+    price: 19.99,
+    description: "Stylische Schutzhülle für dein Smartphone.",
+    icon: "📱",
+  },
+  {
+    id: 2,
+    name: "Panzerglas",
+    price: 9.99,
+    description: "Extra Schutz für dein Display.",
+    icon: "🛡️",
+  },
+  {
+    id: 3,
+    name: "USB-C Ladekabel",
+    price: 14.99,
+    description: "Schnelles Laden für dein Handy.",
+    icon: "🔌",
+  },
+  {
+    id: 4,
+    name: "Smart Ring Charger",
+    price: 39.99,
+    description: "Kabelloses Ladegerät für Smart Rings.",
+    icon: "💍",
+  },
+  {
+    id: 5,
+    name: "Magnetic Phone Grip",
+    price: 19.99,
+    description: "Magnetischer Handyhalter für besseren Halt.",
+    icon: "🧲",
+  },
 ];
 
 export default function Home() {
@@ -66,6 +96,10 @@ export default function Home() {
       <header id="startseite" style={styles.header}>
         <h1 style={styles.title}>Phone Shop</h1>
         <p style={styles.subtitle}>Modernes Zubehör für dein Smartphone</p>
+
+        <button style={styles.heroButton} onClick={() => goTo("produkte")}>
+          Jetzt einkaufen
+        </button>
       </header>
 
       <section style={styles.container}>
@@ -104,7 +138,9 @@ export default function Home() {
           )}
         </div>
 
-        <h2 style={styles.productTitle}>Produkte</h2>
+        <h2 id="produkte" style={styles.productTitle}>
+          Produkte
+        </h2>
 
         <div style={styles.grid}>
           {products.map((product) => (
@@ -171,9 +207,7 @@ export default function Home() {
               {showPayment && (
                 <div style={styles.paymentBox}>
                   <h3>Zahlung</h3>
-                  <p style={styles.desc}>
-                    Bitte bestätige deine Bestellung.
-                  </p>
+                  <p style={styles.desc}>Bitte bestätige deine Bestellung.</p>
 
                   <button style={styles.payButton} onClick={handlePay}>
                     Jetzt bezahlen
@@ -191,7 +225,9 @@ export default function Home() {
         </div>
       </section>
 
-      <footer style={styles.footer}>© 2026 Phone Shop</footer>
+      <footer style={styles.footer}>
+        © 2026 Phone Shop – Alle Rechte vorbehalten.
+      </footer>
     </main>
   );
 }
@@ -245,6 +281,17 @@ const styles: { [key: string]: React.CSSProperties } = {
   subtitle: {
     fontSize: 19,
     opacity: 0.9,
+  },
+  heroButton: {
+    marginTop: 22,
+    padding: "14px 22px",
+    borderRadius: 14,
+    border: "none",
+    background: "white",
+    color: "#1e3a8a",
+    fontWeight: "bold",
+    cursor: "pointer",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.18)",
   },
   container: {
     padding: "35px 55px",
@@ -392,4 +439,3 @@ const styles: { [key: string]: React.CSSProperties } = {
     color: "#64748b",
   },
 };
-
